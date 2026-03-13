@@ -1,0 +1,78 @@
+============================================================
+Project Report - springboot-task-manager-api
+============================================================
+
+1. Project Description
+------------------------------------------------------------
+- Project Name: springboot-task-manager-api
+- Description: REST API for task management built with Java and Spring Boot, persisting data via JPA/Hibernate in PostgreSQL.
+- Objective: Demonstrate skills in Java, Spring Boot, Hibernate, SQL, Docker, REST, and layered architecture best practices.
+
+2. Stack and Technologies
+------------------------------------------------------------
+- Language: Java 17 (LTS)
+- Framework: Spring Boot 3.x (latest stable)
+- Persistence: JPA / Hibernate (via Spring Data JPA)
+- Database: PostgreSQL 15+
+- Build Tool: Maven (latest stable)
+- API Documentation: Springdoc OpenAPI (Swagger 1.6+)
+- Validation: Jakarta Validation (javax.validation)
+- Boilerplate Reduction: Lombok 1.18+
+- Containerization (future): Docker + Docker Compose
+
+3. Package Structure (Architecture)
+------------------------------------------------------------
+com.gabriel.taskmanager
+├─ controller   # REST endpoints
+├─ service      # Business logic
+├─ repository   # JPA/Hibernate interfaces
+├─ entity       # Database models / entities
+├─ dto          # Data Transfer Objects
+├─ config       # Global configuration (Swagger, DB, Security)
+└─ TaskmanagerApplication.java  # Main Spring Boot class
+
+4. Planned Entities
+------------------------------------------------------------
+- User
+  Fields: id, name, email, created_at
+  Relationship: 1:N → Task
+
+- Task
+  Fields: id, title, description, status, created_at, user_id
+  Relationship: N:1 → User
+
+5. Planned Endpoints
+------------------------------------------------------------
+POST   /users               → Create user
+GET    /users               → List users
+POST   /tasks               → Create task
+GET    /tasks               → List tasks
+GET    /tasks/{id}          → Get task by ID
+PUT    /tasks/{id}          → Update task
+DELETE /tasks/{id}          → Delete task
+PATCH  /tasks/{id}/complete → Mark task as completed
+
+6. Future Docker Structure
+------------------------------------------------------------
+- Containers:
+  - Spring Boot API
+  - PostgreSQL database
+- Docker Compose:
+  - Internal network
+  - Volume for data persistence
+- Default Ports:
+  - API: 8080
+  - PostgreSQL: 5432
+
+7. Best Practices Applied
+------------------------------------------------------------
+- Layered architecture: Controller / Service / Repository
+- DTOs for API communication
+- Jakarta Validation for request validation
+- Lombok to reduce boilerplate code
+- Swagger/OpenAPI documentation ready
+- Prepared for Docker containerization
+
+============================================================
+End of Report
+============================================================
