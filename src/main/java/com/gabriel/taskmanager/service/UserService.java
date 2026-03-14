@@ -1,10 +1,10 @@
 package com.gabriel.taskmanager.service;
 
-import org.springframework.stereotype.Service;
 
+import com.gabriel.taskmanager.repository.UserRepository;
+import org.springframework.stereotype.Service;
 import com.gabriel.taskmanager.dto.UserDTO;
 import com.gabriel.taskmanager.entity.User;
-
 import jakarta.validation.Valid;
 
 @Service
@@ -17,23 +17,23 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    //criando um novo usuário
     public UserDTO createUser(@Valid UserDTO userDTO) {
-        //converte DTO para -> Entidade
+
+        //DTO -> ENTIDADE
         User user = new User();
         user.setNome(userDTO.getNome());
         user.setEmail(userDTO.getEmail());
+        
+        User savedUser = userRepository.save(user);
 
-    //Método para salvar no repositório.
-    User savedUser = userRepository.save(user);
+        //ENTIDADE -> DTO
+        UserDTO responseDTO = new UserDTO();
+        responseDTO.setId(savedUser.getId());
+        responseDTO.setNome(savedUser.getNome());
+        responseDTO.setEmail(savedUser.getEmail());
+        responseDTO.setCreatedAt(savedUser.getCreatedAt());
 
-    //converte entidade -> DTO e retorna.
-    UserDTO savedUserDTO= new UserDTO();
-    savedUserDTo.setID(savedUser.getId());
-
-
-
-    return savedUserDTO;
-    }   
+        return responseDTO;
+    }
 
 }
