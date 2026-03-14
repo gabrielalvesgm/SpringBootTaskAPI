@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +20,7 @@ import lombok.NoArgsConstructor;
 @Table(name="tasks")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Task {
 
     @Id
@@ -28,6 +30,7 @@ public class Task {
     @NotBlank
     private String titulo;
 
+    @NotBlank
     private String descricao;
 
     @Enumerated(EnumType.STRING)
@@ -38,6 +41,7 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
 }
 
 enum TaskStatus {
