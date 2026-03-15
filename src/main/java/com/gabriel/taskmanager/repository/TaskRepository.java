@@ -4,6 +4,6 @@ import com.gabriel.taskmanager.entity.Task;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface  TaskRepository extends JpaRepository<Task, Long> {
+public interface TaskRepository extends JpaRepository<Task, Long> {
 
 }

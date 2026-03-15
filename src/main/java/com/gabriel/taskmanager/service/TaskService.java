@@ -33,7 +33,6 @@ public class TaskService {
 
         task.setTitulo(taskDTO.getTitulo());
         task.setDescricao(taskDTO.getDescricao());
-        task.setStatus(taskDTO.getStatus());
         task.setCreatedAt(LocalDateTime.now());
         task.setUser(user);
 
@@ -44,9 +43,7 @@ public class TaskService {
         response.setId(savedTask.getId());
         response.setTitulo(savedTask.getTitulo());
         response.setDescricao(savedTask.getDescricao());
-        response.setStatus(savedTask.getStatus());
         response.setUserId(savedTask.getUser().getId());
-        response.setCreatedAt(savedTask.getCreatedAt());
 
         return response;
     }
