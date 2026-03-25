@@ -1,5 +1,8 @@
 package com.gabriel.taskmanager.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.gabriel.taskmanager.dto.UserDTO;
@@ -67,10 +70,19 @@ public class UserService {
         return responseDTO;
     }
 
-     /**
-     * Dependências e quem depende:
-     * - Depende de UserRepository e Entities/DTOs
-     * - Controller depende do Service
-     */
+         // Método que retorna todos os usuários do banco.
+    public List<UserDTO> getAllUsers() {
+        List<User> users = userRepository.findAll(); // busca todos.
+        List<UserDTO> dtos = new ArrayList<>();
+        for (User user : users) {
+            UserDTO dto = new UserDTO();
+            dto.setId(user.getId());
+            dto.setNome(user.getNome());
+            dto.setEmail(user.getEmail());
+            dto.setCreatedAt(user.getCreatedAt());
+            dtos.add(dto);
+        }
+        return dtos;
+    }
 
 }

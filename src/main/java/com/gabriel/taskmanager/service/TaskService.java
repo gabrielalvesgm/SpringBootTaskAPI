@@ -55,7 +55,6 @@ public class TaskService {
         response.setTitulo(savedTask.getTitulo());
         response.setDescricao(savedTask.getDescricao());
         response.setUserId(savedTask.getUser().getId());
-        response.setCreatedAt(savedTask.getCreatedAt());
 
         return response;
     }
